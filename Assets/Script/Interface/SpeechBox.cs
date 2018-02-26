@@ -9,24 +9,28 @@ public class SpeechBox : MonoBehaviour {
 
     public GameObject speechBubble;
 
-    private GameObject Speechbox;
-    private Text m_text;
+    private Image m_DialogFrame;
+    private Text m_Text;
 
     private void Awake()
     {
         instance = this;
-        Speechbox = gameObject;
-        m_text = Speechbox.GetComponent<Text>();
+
+        m_DialogFrame = GetComponent<Image>();
+        m_Text = GetComponentInChildren<Text>();
+
+        Show(false);
     }
 
-    public void Activate(bool activate)
+    public void Show(bool show)
     {
-        Speechbox.SetActive(activate);
+        m_DialogFrame.enabled = show;
+        m_Text.enabled = show;
     }
 
     public void ChangeText(string text)
     {
-        m_text.text = text;
+        m_Text.text = text;
     }
 
     public GameObject getSpeechBubbleGameObject()

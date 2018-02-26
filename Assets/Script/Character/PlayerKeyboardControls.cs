@@ -44,7 +44,7 @@ public class PlayerKeyboardControls : PlayerBaseControl
 
     void UpdateAction()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             OnActionPressed();
         }

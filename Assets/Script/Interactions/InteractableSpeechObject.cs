@@ -4,51 +4,48 @@ using UnityEngine;
 
 public class InteractableSpeechObject : InteractableBase {
 
-    public int SpeechDataArraySize;
     public SpeechData[] speechData;
 
-    private int index = 0;
+    private int index;
     private int arraySize;
     private GameObject bubbleSpeech;
 
     private void Awake()
     {
-        speechData = new SpeechData[SpeechDataArraySize];
     }
 
     public override void OnInteract()
     {
         if (PlayerAttributes.instance.IsGameStateFrozen() == false)
         {
+            index = 0;
             PlayerAttributes.instance.setFreezeGameState(true);
-            SpeechBox.instance.Activate(true);
+            SpeechBox.instance.Show(true);
         }
 
-        if (index <= SpeechDataArraySize)
+        if (index < speechData.Length)
         {
             DoSpeech();
         }
         else
         {
+            DestroyImmediate(bubbleSpeech);
             PlayerAttributes.instance.setFreezeGameState(false);
-            SpeechBox.instance.Activate(false);
+            SpeechBox.instance.Show(false);
+
         }
     }
 
     private void DoSpeech()
     {
-        Vector2 sourcePosition = speechData[index].source.GetComponent<CharacterAttributes>().getCharacterPosition();
-        Vector2 bubblePosition = new Vector2(sourcePosition.x, sourcePosition.y + speechData[index].source.GetComponent<CharacterAttributes>().getBubbleSpeechHeight());
+        CharacterAttributes attributes = speechData[index].source.GetComponent<CharacterAttributes>();
 
-        if (bubbleSpeech == null)
-        {
-            bubbleSpeech = SpeechBox.instance.getSpeechBubbleGameObject();
-            Instantiate(bubbleSpeech, bubblePosition, Quaternion.identity);
-        }
-        else
-        {
-            bubbleSpeech.transform.position = bubblePosition;
-        }
+        Vector2 sourcePosition = attributes.getCharacterPosition();
+        Vector2 bubblePosition = new Vector2(sourcePosition.x, sourcePosition.y + attributes.getBubbleSpeechHeight());
+
+        bubbleSpeech = SpeechBox.instance.getSpeechBubbleGameObject();
+
+        bubbleSpeech.transform.position = bubblePosition;
             
         SpeechBox.instance.ChangeText(speechData[index].text);
         index++;
