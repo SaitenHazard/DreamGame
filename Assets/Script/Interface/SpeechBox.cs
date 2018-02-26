@@ -7,6 +7,8 @@ public class SpeechBox : MonoBehaviour {
 
     public static SpeechBox instance;
 
+    public GameObject speechBubble;
+
     private GameObject Speechbox;
     private Text m_text;
 
@@ -25,6 +27,11 @@ public class SpeechBox : MonoBehaviour {
     public void ChangeText(string text)
     {
         m_text.text = text;
+    }
+
+    public GameObject getSpeechBubbleGameObject()
+    {
+        return speechBubble;
     }
     
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerKeyboardControls : CharacterBaseControl
+public class PlayerKeyboardControls : PlayerBaseControl
 {
     private void Start()
     {
@@ -12,6 +12,7 @@ public class PlayerKeyboardControls : CharacterBaseControl
     private void Update()
     {
         UpdateDirection();
+        UpdateAction();
     }
 
     private void UpdateDirection()
@@ -41,5 +42,11 @@ public class PlayerKeyboardControls : CharacterBaseControl
         SetDirection(newDirection);
     }
 
-
+    void UpdateAction()
+    {
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            OnActionPressed();
+        }
+    }
 }

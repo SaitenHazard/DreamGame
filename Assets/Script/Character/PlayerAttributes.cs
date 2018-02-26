@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerAttributes : CharacterAttributes {
 
-    bool m_freezeGameState = false;
-    public GameObject speechBubble;
+    bool m_freezeGameState = false;    
 
     public static PlayerAttributes instance;
 

@@ -267,7 +267,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -649719199
   m_SortingLayer: 1
-  m_SortingOrder: 100
+  m_SortingOrder: 200
   m_Sprite: {fileID: 21300000, guid: e04dcb03ac11d4942ae94a187404b165, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -286,10 +286,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 450512010}
-  - component: {fileID: 450512012}
   - component: {fileID: 450512011}
   - component: {fileID: 450512013}
   - component: {fileID: 450512015}
+  - component: {fileID: 450512012}
   - component: {fileID: 450512014}
   - component: {fileID: 450512016}
   m_Layer: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 450512009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222bfffc0e9780f48b5139435e818380, type: 3}
+  m_Script: {fileID: 11500000, guid: c89d6cfeeede45e409653859d351b462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &450512013
@@ -380,8 +380,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   bubbleSpeechHeight: 1
-  speechBubble: {fileID: 1162816962989854, guid: c714e69e05aadcb409373640d1035ead,
-    type: 2}
 --- !u!61 &450512016
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -488,6 +486,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7894313e9c5e9bc4b8dd15b34be5529c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speechBubble: {fileID: 1162816962989854, guid: c714e69e05aadcb409373640d1035ead,
+    type: 2}
 --- !u!1 &537950095
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +671,7 @@ GameObject:
   - component: {fileID: 1347119769}
   - component: {fileID: 1347119768}
   - component: {fileID: 1347119773}
+  - component: {fileID: 1347119774}
   - component: {fileID: 1347119767}
   - component: {fileID: 1347119770}
   m_Layer: 0
@@ -736,7 +737,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0110916495, y: 0.041395247}
+  m_Offset: {x: -0.011091679, y: -0.39292043}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -747,7 +748,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9112668, y: 1.366025}
+  m_Size: {x: 0.91126686, y: 0.4973936}
   m_EdgeRadius: 0
 --- !u!114 &1347119771
 MonoBehaviour:
@@ -793,6 +794,17 @@ MonoBehaviour:
     text: And you look like me!
   - source: {fileID: 450512009}
     text: '......'
+--- !u!114 &1347119774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1347119766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcdcee2846c3e749bcef70ef08f57ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1858751839
 GameObject:
   m_ObjectHideFlags: 0

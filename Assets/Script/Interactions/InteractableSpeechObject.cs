@@ -6,9 +6,10 @@ public class InteractableSpeechObject : InteractableBase {
 
     public int SpeechDataArraySize;
     public SpeechData[] speechData;
-    private int index = 0;
 
+    private int index = 0;
     private int arraySize;
+    private GameObject bubbleSpeech;
 
     private void Awake()
     {
@@ -29,15 +30,28 @@ public class InteractableSpeechObject : InteractableBase {
         }
         else
         {
+            PlayerAttributes.instance.setFreezeGameState(false);
             SpeechBox.instance.Activate(false);
         }
     }
 
     private void DoSpeech()
     {
-        SpeechBox.instance.ChangeText(speechData[index].text);
+        Vector2 sourcePosition = speechData[index].source.GetComponent<CharacterAttributes>().getCharacterPosition();
+        Vector2 bubblePosition = new Vector2(sourcePosition.x, sourcePosition.y + speechData[index].source.GetComponent<CharacterAttributes>().getBubbleSpeechHeight());
 
-        float bubbleHeight = speechData[index++].source.transform.position.x;
+        if (bubbleSpeech == null)
+        {
+            bubbleSpeech = SpeechBox.instance.getSpeechBubbleGameObject();
+            Instantiate(bubbleSpeech, bubblePosition, Quaternion.identity);
+        }
+        else
+        {
+            bubbleSpeech.transform.position = bubblePosition;
+        }
+            
+        SpeechBox.instance.ChangeText(speechData[index].text);
+        index++;
     }    
 }
     

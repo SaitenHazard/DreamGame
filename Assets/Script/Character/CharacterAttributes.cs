@@ -16,4 +16,11 @@ public class CharacterAttributes : MonoBehaviour {
     {
         return bubbleSpeechHeight;
     }
+
+    public Vector2 getCharacterPosition()
+    {
+        Vector2 positon = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+
+        return positon;
+    }
 }

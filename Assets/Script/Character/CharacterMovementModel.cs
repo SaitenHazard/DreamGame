@@ -7,7 +7,6 @@ public class CharacterMovementModel : MonoBehaviour
     private float m_speed;
 
     private Rigidbody2D m_Body;
-    private PlayerAttributes m_Attributes;
 
     private Vector2 m_MovmentDirection;
     private Vector2 m_RecievedDirection;
@@ -16,17 +15,12 @@ public class CharacterMovementModel : MonoBehaviour
     private void Awake()
     {
         m_Body = GetComponent<Rigidbody2D>();
-        m_Attributes = GetComponent<PlayerAttributes>();
+        m_speed = gameObject.GetComponent<CharacterAttributes>().getSpeed();
 
-        getAttributes();
+        Debug.Log(m_Body);
     }
 
-    private void getAttributes()
-    {
-        m_speed = m_Attributes.getSpeed();
-    }
-
-    private void Update()
+    protected void Update()
     {
         UpdateDirection();
         ResetRecievedDirection();
@@ -54,7 +48,7 @@ public class CharacterMovementModel : MonoBehaviour
 
     private void UpdateDirection()
     {
-        if (m_Attributes.IsGameStateFrozen()) return;
+        if (PlayerAttributes.instance.IsGameStateFrozen()) return;
 
         m_MovmentDirection = new Vector2(m_RecievedDirection.x, m_RecievedDirection.y);
 
@@ -108,5 +102,10 @@ public class CharacterMovementModel : MonoBehaviour
         }
 
         m_RecievedDirection = direction;
+    }
+
+    virtual public void DoAction()
+    {
+
     }
 }

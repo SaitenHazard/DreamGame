@@ -6,13 +6,14 @@ public class CharacterBaseControl : MonoBehaviour
 {
     protected CharacterMovementModel m_movementModel;
 
-    private void Awake()
+    protected void Awake()
     {
         m_movementModel = GetComponent<CharacterMovementModel>();
     }
 
     protected Vector2 GetDiagonalizedDirection(Vector2 direction, float threshold)
     {
+
         if(Mathf.Abs(direction.x) < threshold)
         {
             direction.x = 0;
@@ -42,10 +43,5 @@ public class CharacterBaseControl : MonoBehaviour
         }
 
         m_movementModel.SetDirection(direction);
-    }
-
-    protected void OnActionPressed()
-    {
-        
     }
 }
