@@ -8,8 +8,10 @@ public class PlayerAttributes : CharacterAttributes {
 
     public static PlayerAttributes instance;
 
-    private void Awake()
+    protected void Awake()
     {
+        base.Awake();
+
         instance = this;
     }
 

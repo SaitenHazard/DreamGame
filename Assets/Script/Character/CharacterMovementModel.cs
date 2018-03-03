@@ -17,7 +17,6 @@ public class CharacterMovementModel : MonoBehaviour
         m_Body = GetComponent<Rigidbody2D>();
         m_speed = gameObject.GetComponent<CharacterAttributes>().getSpeed();
 
-        Debug.Log(m_Body);
     }
 
     protected void Update()
@@ -48,8 +47,6 @@ public class CharacterMovementModel : MonoBehaviour
 
     private void UpdateDirection()
     {
-        if (PlayerAttributes.instance.IsGameStateFrozen()) return;
-
         m_MovmentDirection = new Vector2(m_RecievedDirection.x, m_RecievedDirection.y);
 
         if (m_RecievedDirection != Vector2.zero)

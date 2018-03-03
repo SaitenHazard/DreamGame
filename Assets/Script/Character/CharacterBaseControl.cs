@@ -35,9 +35,9 @@ public class CharacterBaseControl : MonoBehaviour
         return direction;
     }
 
-    protected void SetDirection(Vector2 direction)
+    public void SetDirection(Vector2 direction)
     {
-        if(m_movementModel == null)
+        if (m_movementModel == null)
         {
             return;
         }

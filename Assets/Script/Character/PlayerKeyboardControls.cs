@@ -17,6 +17,8 @@ public class PlayerKeyboardControls : PlayerBaseControl
 
     private void UpdateDirection()
     {
+        if (PlayerAttributes.instance.IsGameStateFrozen()) return;
+
         Vector2 newDirection = Vector2.zero;
 
         if(Input.GetKey(KeyCode.UpArrow))

@@ -7,7 +7,7 @@ public class SpeechBox : MonoBehaviour {
 
     public static SpeechBox instance;
 
-    public GameObject speechBubble;
+    public GameObject speechBubble; 
 
     private Image m_DialogFrame;
     private Text m_Text;
@@ -24,12 +24,15 @@ public class SpeechBox : MonoBehaviour {
 
     public void Show(bool show)
     {
+        speechBubble.SetActive(show);
         m_DialogFrame.enabled = show;
         m_Text.enabled = show;
     }
 
-    public void ChangeText(string text)
+    public void ChangeText(string text, Vector2 bubblePosition)
     {
+        speechBubble.transform.position = bubblePosition;
+
         m_Text.text = text;
     }
 
