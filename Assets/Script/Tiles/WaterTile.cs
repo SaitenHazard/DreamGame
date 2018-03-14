@@ -1,13 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Autotile : Tile {
+public class WaterTile : Tile
+{
+    /// <summary>
+    /// An array with all the waterTiles that we have in our game
+    /// </summary>
+    [SerializeField]
+    private Sprite[] waterSprites;
 
+    //A preview of the tile
+    [SerializeField]
+    private Sprite preview;
+
+    /// <summary>
+    /// Refreshes this tile when something changes
+    /// </summary>
+    /// <param name="position">The tiles position in the grid</param>
+    /// <param name="tilemap">A reference to the tilemap that this tile belongs to.</param>
+    public override void RefreshTile(Vector3Int position, ITilemap tilemap)
+    {
+        for (int y = -1; y <= 1; y++) //Runs through all the tile's neighbours 
+        {
+            for (int x = -1; x <= 1; x++)
+            {
+                //We store the position of the neighbour 
+                Vector3Int nPos = new Vector3Int(position.x + x, position.y + y, position.z);
+
+                if (HasWater(tilemap, nPos)) //If the neighbour has water on it
+                {
+                    tilemap.RefreshTile(nPos); //Them we make sure to refresh the neighbour aswell
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Changes the tiles sprite to the correct sprites based on the situation
+    /// </summary>
+    /// <param name="location">The location of this sprite</param>
+    /// <param name="tilemap">A reference to the tilemap, that this tile belongs to</param>
+    /// <param name="tileData">A reference to the actual object, that this tile belongs to</param>
     public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
     {
-        string composition = string.Empty;
+        string composition = string.Empty;//Makes an empty string as compostion, we need this so that we change the sprite
 
         for (int x = -1; x <= 1; x++)//Runs through all neighbours 
         {
@@ -30,6 +69,7 @@ public class Autotile : Tile {
             }
         }
 
+        ///Selects a random tile for the water
         int randomVal = Random.Range(0, 100);
 
         if (randomVal < 15)
@@ -47,7 +87,7 @@ public class Autotile : Tile {
         }
 
 
-
+        //Changes the sprite based on what we see.
         if (composition[1] == 'E' && composition[3] == 'E' && composition[4] == 'E' && composition[6] == 'E')
         {
             tileData.sprite = waterSprites[0];
@@ -234,4 +274,24 @@ public class Autotile : Tile {
         }
 
     }
+
+    private bool HasWater(ITilemap tilemap, Vector3Int position)
+    {
+        return tilemap.GetTile(position) == this;
+    }
+
+
+#if UNITY_EDITOR
+    [MenuItem("Assets/Create/Tiles/WaterTile")]
+    public static void CreateWaterTile()
+    {
+        string path = EditorUtility.SaveFilePanelInProject("Save Watertile", "New Watertile", "asset", "Save watertile", "Assets");
+        if (path == "")
+        {
+            return;
+        }
+        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<WaterTile>(), path);
+    }
+
+#endif
 }
