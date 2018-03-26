@@ -29,6 +29,7 @@ public class InteractableSpeechObject : InteractableBase {
             index = 0;
             PlayerAttributes.instance.setFreezeGameState(true);
             SpeechBox.instance.Show(true);
+            Status.instance.Show(false);
         }
 
         if (index < speechData.Length)
@@ -41,6 +42,7 @@ public class InteractableSpeechObject : InteractableBase {
 
             PlayerAttributes.instance.setFreezeGameState(false);
             SpeechBox.instance.Show(false);
+            Status.instance.Show(true);
         }
     }
 

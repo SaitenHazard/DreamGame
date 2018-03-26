@@ -7,33 +7,33 @@ public class SpeechBox : MonoBehaviour {
 
     public static SpeechBox instance;
 
-    public GameObject speechBubble; 
 
-    private Image m_DialogFrame;
-    private Text m_Text;
+    private GameObject Speech;
+
+    [SerializeField]
+    private Text m_textBox;
+    [SerializeField]
+    private GameObject speechBubble;
 
     private void Awake()
     {
         instance = this;
 
-        m_DialogFrame = GetComponent<Image>();
-        m_Text = GetComponentInChildren<Text>();
+        Speech = instance.gameObject;
 
         Show(false);
     }
 
     public void Show(bool show)
     {
-        speechBubble.SetActive(show);
-        m_DialogFrame.enabled = show;
-        m_Text.enabled = show;
+        Speech.SetActive(show);
     }
 
     public void ChangeText(string text, Vector2 bubblePosition)
     {
         speechBubble.transform.position = bubblePosition;
 
-        m_Text.text = text;
+        m_textBox.text = text;
     }
 
     public GameObject getSpeechBubbleGameObject()
